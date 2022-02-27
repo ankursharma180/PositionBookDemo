@@ -1,10 +1,12 @@
 package com.trading.front;
 
 import static com.trading.utils.TradingConstants.COMMA;
+import static com.trading.utils.TradingConstants.PIPE;
+import static com.trading.utils.TradingConstants.QUIT;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import com.trading.business.BuySellCancelSecurities;
 import com.trading.business.Securities;
@@ -18,10 +20,7 @@ import com.trading.dto.TradingEventType;
  */
 public class TradingMenu {
 	/**
-	 * This method will display the trading options for each trading event type
-	 * (Buy, Sell and Cancel). User needs to enter the number for each trading
-	 * event, 1 - Buy, 2 - Sell and 3 - Cancel. To quit trading program, Select
-	 * Option : 4 - Quit.
+	 * This method will accept trading input. anytime, you want to exit, type QUIT.
 	 */
 	public static void displayTradingOption() {
 		RealTimePosition realTimePosition = new RealTimePosition();
@@ -31,8 +30,14 @@ public class TradingMenu {
 		System.out.println("*************Welcome to JP Morgan Trading Platform.***********");
 		System.out.println("**************************************************************");
 		do {
-			serialNo = buySellCancelSecurities(realTimePosition, serialNo, null);
-			realTimePosition.displayRealTimePosition();
+			String decision = buySellCancelSecurities(realTimePosition, serialNo, null);
+			if (decision.startsWith("true")) {
+				quit = true;
+				System.out.println("Exit from Position Book ");
+			} else {
+				serialNo = Integer.valueOf(decision.split(PIPE)[1]);
+				realTimePosition.displayRealTimePosition();
+			}
 		} while (!quit);
 	}
 
@@ -41,43 +46,64 @@ public class TradingMenu {
 	 *
 	 * @param realTimePosition the real time position
 	 * @param serialNo         the serial no
-	 * @param buySecurities    the buy securities
+	 * @param securities       the securities
 	 * @return the integer
 	 */
-	private static Integer buySellCancelSecurities(RealTimePosition realTimePosition, final Integer serialNo,
+	private static String buySellCancelSecurities(RealTimePosition realTimePosition, final Integer serialNo,
 			Securities securities) {
 		int newSerialNo = serialNo;
 		if (securities == null) {
 			securities = new BuySellCancelSecurities();
 		}
 		String inputSecurityStrig = securities.getSecuritiesInput(++newSerialNo);
-		String[] input = inputSecurityStrig.split(COMMA);
-		if (input.length == 5) {
-			TradeEvent tradeEvent = securities.prepareTradeEvent(input, inputSecurityStrig);
-			String aggKey = tradeEvent.getTradingAccont() + tradeEvent.getSecurityIdentifier();
-			if (realTimePosition.realTimePositionMap.get(aggKey) != null) {
-				List<TradeEvent> listOfTradeEvent = realTimePosition.realTimePositionMap.get(aggKey);
-				if (TradingEventType.valueOf(tradeEvent.getTradingEventType()) == TradingEventType.BUY) {
-					listOfTradeEvent.get(0).setNumberOfUnits(
-							listOfTradeEvent.get(0).getNumberOfUnits() + tradeEvent.getNumberOfUnits());
-				} else if (TradingEventType.valueOf(tradeEvent.getTradingEventType()) == TradingEventType.SELL) {
-					listOfTradeEvent.get(0).setNumberOfUnits(
-							listOfTradeEvent.get(0).getNumberOfUnits() - tradeEvent.getNumberOfUnits());
-				} else {
-					securities.cancelSecurities(realTimePosition, tradeEvent, listOfTradeEvent);
-				}
-				listOfTradeEvent.get(0).setRawInputFromUser(
-						listOfTradeEvent.get(0).getRawInputFromUser() + ",[" + inputSecurityStrig + "]");
-			} else {
-				List<TradeEvent> tradeEventList = new ArrayList<>();
-				tradeEventList.add(tradeEvent);
-				realTimePosition.realTimePositionMap.put(aggKey, tradeEventList);
-			}
-			realTimePosition.listOfInputTradeEvents.add(tradeEvent);
-		} else {
-			System.out.println("Invalid Data, please provide input again");
-			buySellCancelSecurities(realTimePosition, --newSerialNo, securities);
+		if (inputSecurityStrig.equals(QUIT)) {
+			return "true|" + newSerialNo;
 		}
-		return newSerialNo;
+		List<String> inputList = Arrays.asList(inputSecurityStrig.split(PIPE));
+		for (String event : inputList) {
+			String[] input = event.split(COMMA);
+			if (input.length == 5) {
+				TradeEvent tradeEvent = securities.prepareTradeEvent(input, inputSecurityStrig);
+				String aggKey = tradeEvent.getTradingAccont() + tradeEvent.getSecurityIdentifier();
+				List<TradeEvent> listOfTradeEvent = realTimePosition.realTimePositionMap.get(aggKey);
+				if (realTimePosition.realTimePositionMap.get(aggKey) != null) {
+					if (TradingEventType.valueOf(tradeEvent.getTradingEventType()) == TradingEventType.BUY) {
+						listOfTradeEvent.get(0).setNumberOfUnits(
+								listOfTradeEvent.get(0).getNumberOfUnits() + tradeEvent.getNumberOfUnits());
+					} else if (TradingEventType.valueOf(tradeEvent.getTradingEventType()) == TradingEventType.SELL) {
+						listOfTradeEvent.get(0).setNumberOfUnits(
+								listOfTradeEvent.get(0).getNumberOfUnits() - tradeEvent.getNumberOfUnits());
+					} else {
+						securities.cancelSecurities(realTimePosition, tradeEvent, listOfTradeEvent);
+					}
+				} else {
+					List<TradeEvent> tradeEventList = new ArrayList<>();
+					tradeEventList.add(tradeEvent);
+					realTimePosition.realTimePositionMap.put(aggKey, tradeEventList);
+				}
+				addTradeEventForRealTimeDisplay(realTimePosition, securities, inputSecurityStrig, input);
+			} else {
+				System.out.println("Invalid Data, please provide input again");
+				buySellCancelSecurities(realTimePosition, --newSerialNo, securities);
+			}
+		}
+		newSerialNo += (inputList.size() - 1);
+		return "false|" + newSerialNo;
+	}
+
+	/**
+	 * Adds the trade event for real time display.
+	 *
+	 * @param realTimePosition   the real time position
+	 * @param securities         the securities
+	 * @param inputSecurityStrig the input security strig
+	 * @param input              the input
+	 * @return the trade event
+	 */
+	private static TradeEvent addTradeEventForRealTimeDisplay(RealTimePosition realTimePosition, Securities securities,
+			String inputSecurityStrig, String[] input) {
+		TradeEvent tradeEvent = securities.prepareTradeEvent(input, inputSecurityStrig);
+		realTimePosition.listOfInputTradeEvents.add(tradeEvent);
+		return tradeEvent;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.trading.dto.TradeEvent;
 
@@ -24,9 +25,7 @@ public class RealTimePosition {
 	public void displayRealTimePosition() {
 		System.out.println("\n\n<<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>>>>");
 		realTimePositionMap.entrySet()
-				.forEach(realTime -> System.out.println(" || " + realTime.getKey() + " || "
-						+ realTime.getValue().stream().mapToInt(event -> event.getNumberOfUnits()).sum() + " || "
-						+ displayTradeEventAsString(realTime.getValue())));
+				.forEach(realTime -> System.out.println(displayTradeEventAsString(realTime.getValue())));
 		System.out.println("<<<<<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>\n");
 	}
 
@@ -39,7 +38,16 @@ public class RealTimePosition {
 	private String displayTradeEventAsString(List<TradeEvent> tradeEventList) {
 		StringBuilder builder = new StringBuilder();
 		for (TradeEvent tradeEvent : tradeEventList) {
-			builder.append(tradeEvent.getRawInputFromUser()).append(" ");
+			List<TradeEvent> collectedEvent = listOfInputTradeEvents.stream()
+					.filter(event -> (event.getTradingAccont().equals(tradeEvent.getTradingAccont())
+							&& event.getSecurityIdentifier().equals(tradeEvent.getSecurityIdentifier())))
+					.collect(Collectors.toList());
+			builder.append(" || ").append(tradeEvent.getTradingAccont()).append(" || ")
+					.append(tradeEvent.getSecurityIdentifier()).append(" || ");
+			builder.append(tradeEventList.stream().mapToInt(event -> event.getNumberOfUnits()).sum()).append(" || ");
+			collectedEvent.stream().forEach(event -> {
+				builder.append(event.toString()).append(" ");
+			});
 		}
 		builder.append("||");
 		return builder.toString();

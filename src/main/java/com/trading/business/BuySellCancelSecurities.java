@@ -16,8 +16,7 @@ public class BuySellCancelSecurities implements Securities {
 	/**
 	 * Buy.
 	 *
-	 * @param realTimePosition the real time position
-	 * @param serialNo         the serial no
+	 * @param serialNo the serial no
 	 * @return the string
 	 */
 	@SuppressWarnings("resource")
@@ -26,10 +25,11 @@ public class BuySellCancelSecurities implements Securities {
 		String buyInput = "";
 		System.out.println("\n**********************GET SECURITIES INPUT********************");
 		System.out.print(
-				"If the input security is one, then enter inout like this: " + serialNo + ",BUY,ACC1,SEC1,50 : \n");
+				"If the input security is one, then enter input like this: " + serialNo + ",BUY,ACC1,SEC1,50 : \n");
 		System.out.println(
 				"If you have more than one security input, add a pipe character(|) in between input securities. \nExample: "
 						+ (serialNo + ",BUY,ACC1,SEC1,50|") + ((serialNo + 1) + ",SELL,ACC1,SEC1,10"));
+		System.out.print("If you want to quit, type QUIT");
 		System.out.print("Please provide your input: ");
 		Scanner scanner = new Scanner(System.in);
 		buyInput = scanner.nextLine();

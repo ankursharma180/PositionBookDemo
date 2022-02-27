@@ -22,9 +22,6 @@ public class TradeEvent {
 	/** The no of units. */
 	int numberOfUnits;
 
-	/** The raw input from user. */
-	String rawInputFromUser;
-
 	/**
 	 * Instantiates a new trade event.
 	 */
@@ -49,7 +46,6 @@ public class TradeEvent {
 		this.tradingAccont = tradingAccont;
 		this.securityIdentifier = securityIdentifier;
 		this.numberOfUnits = numberOfUnits;
-		this.rawInputFromUser = rawInputFromUser;
 	}
 
 	/**
@@ -140,24 +136,6 @@ public class TradeEvent {
 	 */
 	public void setNumberOfUnits(int numberOfUnits) {
 		this.numberOfUnits = numberOfUnits;
-	}
-
-	/**
-	 * Gets the raw input from user.
-	 *
-	 * @return the raw input from user
-	 */
-	public String getRawInputFromUser() {
-		return rawInputFromUser;
-	}
-
-	/**
-	 * Sets the raw input from user.
-	 *
-	 * @param rawInputFromUser the new raw input from user
-	 */
-	public void setRawInputFromUser(String rawInputFromUser) {
-		this.rawInputFromUser = rawInputFromUser;
 	}
 
 	/**

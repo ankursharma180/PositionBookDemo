@@ -4,5 +4,11 @@ package com.trading.dto;
  * The Enum TradingEventType.
  */
 public enum TradingEventType {
-	BUY, SELL, CANCEL
+
+	/** The buy. */
+	BUY,
+	/** The sell. */
+	SELL,
+	/** The cancel. */
+	CANCEL
 }

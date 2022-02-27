@@ -5,12 +5,12 @@ package com.trading.utils;
  */
 public class TradingConstants {
 
-	/** The Constant YES. */
-	public static final String YES = "Yes";
-
-	/** The Constant NO. */
-	public static final String NO = "No";
-
 	/** The Constant COMMA. */
 	public static final String COMMA = ",";
+
+	/** The Constant PIPE. */
+	public static final String PIPE = "\\|";
+
+	/** The Constant QUIT. */
+	public static final String QUIT = "QUIT";
 }
