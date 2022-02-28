@@ -1,6 +1,15 @@
 # PositionBookDemo
 This java program is for trading transaction.
 
+**Assumptions:**
+It is assumed the data in real systems would be coming from some queue or via some event in the form of json etc.
+Likewise, this program accepts trading event data as a comma seperated string **1,BUY,ACC1,SEC1,50**.
+If there are more than one events, than data needs be provided using pipe operater seperating every trading event.
+**1,BUY,ACC1,SEC1,50|2,SELL,ACC1,SEC1,10**
+
+The program will break them on the basis of pipe and comma and will process the input.
+Real Time Position holds the current position of a aggregated record (tradingEvent+securityIdentifer) and will display data accordingly with full event history.
+
 Sample Output from the program:
 
 
