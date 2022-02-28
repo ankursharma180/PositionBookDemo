@@ -10,12 +10,7 @@ RUN 1:
 *************Welcome to JP Morgan Trading Platform.***********
 **************************************************************
 
-**********************GET SECURITIES INPUT********************
-If the input security is one, then enter input like this: 0,BUY,ACC1,SEC1,50 : 
-If you have more than one security input, add a pipe character(|) in between input securities. 
-Example: 0,BUY,ACC1,SEC1,50|1,SELL,ACC1,SEC1,10
 Please provide your input: 1,BUY,ACC1,SEC1,50|2,SELL,ACC1,SEC1,10
-
 
 <<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>>>>
  || ACC1 || SEC1 || 40 || [id:1,BUY,ACC1,SEC1,50] [id:2,SELL,ACC1,SEC1,10] ||
@@ -23,23 +18,14 @@ Please provide your input: 1,BUY,ACC1,SEC1,50|2,SELL,ACC1,SEC1,10
 
 
 **********************GET SECURITIES INPUT********************
-If the input security is one, then enter input like this: 3,BUY,ACC1,SEC1,50 : 
-If you have more than one security input, add a pipe character(|) in between input securities. 
-Example: 3,BUY,ACC1,SEC1,50|4,SELL,ACC1,SEC1,10
 Please provide your input: 3,BUY,ACC1,SEC1,12|4,CANCEL,ACC1,SEC1,0
-
 
 <<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>>>>
  || ACC1 || SEC1 || 40 || [id:1,BUY,ACC1,SEC1,50] [id:2,SELL,ACC1,SEC1,10] [id:3,BUY,ACC1,SEC1,12] [id:4,CANCEL,ACC1,SEC1,0] ||
 <<<<<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>
 
-
 **********************GET SECURITIES INPUT********************
-If the input security is one, then enter input like this: 6,BUY,ACC1,SEC1,50 : 
-If you have more than one security input, add a pipe character(|) in between input securities. 
-Example: 6,BUY,ACC1,SEC1,50|7,SELL,ACC1,SEC1,10
 Please provide your input: 6,BUY,ACC1,SEC1,50
-
 
 <<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>>>>
  || ACC1 || SEC1 || 90 || [id:1,BUY,ACC1,SEC1,50] [id:2,SELL,ACC1,SEC1,10] [id:3,BUY,ACC1,SEC1,12] [id:4,CANCEL,ACC1,SEC1,0] [id:6,BUY,ACC1,SEC1,50] ||
@@ -47,11 +33,7 @@ Please provide your input: 6,BUY,ACC1,SEC1,50
 
 
 **********************GET SECURITIES INPUT********************
-If the input security is one, then enter input like this: 8,BUY,ACC1,SEC1,50 : 
-If you have more than one security input, add a pipe character(|) in between input securities. 
-Example: 8,BUY,ACC1,SEC1,50|9,SELL,ACC1,SEC1,10
 Please provide your input: 6,BUY,ACC2,SEC1,50|7,BUY,ACC2,SEC1,150|7,CANCEL,ACC2,SEC1,0|8,SELL,ACC2,SEC1,10
-
 
 <<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>>>>
  || ACC2 || SEC1 || 40 || [id:6,BUY,ACC2,SEC1,50] [id:7,BUY,ACC2,SEC1,150] [id:7,CANCEL,ACC2,SEC1,0] [id:8,SELL,ACC2,SEC1,10] ||
@@ -69,48 +51,29 @@ RUN 2:
 **************************************************************
 
 **********************GET SECURITIES INPUT********************
-If the input security is one, then enter input like this: 0,BUY,ACC1,SEC1,50 : 
-If you have more than one security input, add a pipe character(|) in between input securities. 
-Example: 0,BUY,ACC1,SEC1,50|1,SELL,ACC1,SEC1,10
 Please provide your input: 1,BUY,ACC1,SEC1,50|2,SELL,ACC1,SEC1,10
-
 
 <<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>>>>
  || ACC1 || SEC1 || 40 || [id:1,BUY,ACC1,SEC1,50] [id:2,SELL,ACC1,SEC1,10] ||
 <<<<<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>
 
-
 **********************GET SECURITIES INPUT********************
-If the input security is one, then enter input like this: 3,BUY,ACC1,SEC1,50 : 
-If you have more than one security input, add a pipe character(|) in between input securities. 
-Example: 3,BUY,ACC1,SEC1,50|4,SELL,ACC1,SEC1,10
 Please provide your input: 2,CANCEL,ACC1,SEC1,0
-
 
 <<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>>>>
  || ACC1 || SEC1 || 50 || [id:1,BUY,ACC1,SEC1,50] [id:2,SELL,ACC1,SEC1,10] [id:2,CANCEL,ACC1,SEC1,0] ||
 <<<<<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>
 
-
 **********************GET SECURITIES INPUT********************
-If the input security is one, then enter input like this: 5,BUY,ACC1,SEC1,50 : 
-If you have more than one security input, add a pipe character(|) in between input securities. 
-Example: 5,BUY,ACC1,SEC1,50|6,SELL,ACC1,SEC1,10
 Please provide your input: 3,BUY,ACC2,SEC1,100|4,BUY,ACC2,SEC1,20|5,SELL,ACC2,SEC1,10|6,CANCEL,ACC2,SEC1,0
-
 
 <<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>>>>
  || ACC2 || SEC1 || 120 || [id:3,BUY,ACC2,SEC1,100] [id:4,BUY,ACC2,SEC1,20] [id:5,SELL,ACC2,SEC1,10] [id:6,CANCEL,ACC2,SEC1,0] ||
  || ACC1 || SEC1 || 50 || [id:1,BUY,ACC1,SEC1,50] [id:2,SELL,ACC1,SEC1,10] [id:2,CANCEL,ACC1,SEC1,0] ||
 <<<<<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>
 
-
 **********************GET SECURITIES INPUT********************
-If the input security is one, then enter input like this: 10,BUY,ACC1,SEC1,50 : 
-If you have more than one security input, add a pipe character(|) in between input securities. 
-Example: 10,BUY,ACC1,SEC1,50|11,SELL,ACC1,SEC1,10
 Please provide your input: 7,BUY,ACC1,SEC1,50|8,SELL,ACC1,SEC1,15|9,CANCEL,ACC1,SEC1,0
-
 
 <<<<<<<<<<<<<<<<< REAL TIME POSITION >>>>>>>>>>>>>>>>>>>>>>>>>
  || ACC2 || SEC1 || 120 || [id:3,BUY,ACC2,SEC1,100] [id:4,BUY,ACC2,SEC1,20] [id:5,SELL,ACC2,SEC1,10] [id:6,CANCEL,ACC2,SEC1,0] ||
