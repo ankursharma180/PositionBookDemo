@@ -63,7 +63,7 @@ public class TradingMenu {
 		for (String event : inputList) {
 			String[] input = event.split(COMMA);
 			if (input.length == 5) {
-				TradeEvent tradeEvent = securities.prepareTradeEvent(input, inputSecurityStrig);
+				TradeEvent tradeEvent = securities.prepareTradeEvent(input);
 				String aggKey = tradeEvent.getTradingAccont() + tradeEvent.getSecurityIdentifier();
 				List<TradeEvent> listOfTradeEvent = realTimePosition.realTimePositionMap.get(aggKey);
 				if (realTimePosition.realTimePositionMap.get(aggKey) != null) {
@@ -102,7 +102,7 @@ public class TradingMenu {
 	 */
 	private static TradeEvent addTradeEventForRealTimeDisplay(RealTimePosition realTimePosition, Securities securities,
 			String inputSecurityStrig, String[] input) {
-		TradeEvent tradeEvent = securities.prepareTradeEvent(input, inputSecurityStrig);
+		TradeEvent tradeEvent = securities.prepareTradeEvent(input);
 		realTimePosition.listOfInputTradeEvents.add(tradeEvent);
 		return tradeEvent;
 	}

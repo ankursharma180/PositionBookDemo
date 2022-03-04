@@ -37,10 +37,9 @@ public class TradeEvent {
 	 * @param tradingAccont      the trading accont
 	 * @param securityIdentifier the security identifier
 	 * @param numberOfUnits      the number of units
-	 * @param rawInputFromUser   the raw input from user
 	 */
 	public TradeEvent(int id, String tradingEventType, String tradingAccont, String securityIdentifier,
-			int numberOfUnits, String rawInputFromUser) {
+			int numberOfUnits) {
 		this.id = id;
 		this.tradingEventType = tradingEventType;
 		this.tradingAccont = tradingAccont;
@@ -58,30 +57,12 @@ public class TradeEvent {
 	}
 
 	/**
-	 * Sets the id.
-	 *
-	 * @param id the new id
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
 	 * Gets the trading event type.
 	 *
 	 * @return the trading event type
 	 */
 	public String getTradingEventType() {
 		return tradingEventType;
-	}
-
-	/**
-	 * Sets the trading event type.
-	 *
-	 * @param tradingEventType the new trading event type
-	 */
-	public void setTradingEventType(String tradingEventType) {
-		this.tradingEventType = tradingEventType;
 	}
 
 	/**
@@ -94,30 +75,12 @@ public class TradeEvent {
 	}
 
 	/**
-	 * Sets the trading accont.
-	 *
-	 * @param tradingAccont the new trading accont
-	 */
-	public void setTradingAccont(String tradingAccont) {
-		this.tradingAccont = tradingAccont;
-	}
-
-	/**
 	 * Gets the security identifier.
 	 *
 	 * @return the security identifier
 	 */
 	public String getSecurityIdentifier() {
 		return securityIdentifier;
-	}
-
-	/**
-	 * Sets the security identifier.
-	 *
-	 * @param securityIdentifier the new security identifier
-	 */
-	public void setSecurityIdentifier(String securityIdentifier) {
-		this.securityIdentifier = securityIdentifier;
 	}
 
 	/**

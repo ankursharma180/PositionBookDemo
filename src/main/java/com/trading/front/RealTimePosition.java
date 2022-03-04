@@ -14,7 +14,7 @@ import com.trading.dto.TradeEvent;
 public class RealTimePosition {
 
 	/** The real time position map. */
-	Map<String, List<TradeEvent>> realTimePositionMap = new HashMap<>();
+	public Map<String, List<TradeEvent>> realTimePositionMap = new HashMap<>();
 
 	/** The list of input trade events. */
 	public List<TradeEvent> listOfInputTradeEvents = new ArrayList<>();

@@ -31,12 +31,11 @@ public interface Securities {
 	/**
 	 * Prepare trade event.
 	 *
-	 * @param input    the input
-	 * @param rawInput the raw input
+	 * @param input the input
 	 * @return the trade event
 	 */
-	public default TradeEvent prepareTradeEvent(String[] input, final String rawInput) {
+	public default TradeEvent prepareTradeEvent(String[] input) {
 		return new TradeEvent(Integer.valueOf(input[0].trim()), input[1].trim(), input[2].trim(), input[3].trim(),
-				Integer.valueOf(input[4].trim()), "[" + rawInput + "]");
+				Integer.valueOf(input[4].trim()));
 	}
 }
